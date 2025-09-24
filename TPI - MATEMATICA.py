@@ -1,11 +1,23 @@
 def ingresar_dnis():                           # Pide al usuario cuántos DNIs quiere ingresar.
     dnis = []
-    n = int(input("¿Cuántos DNIs quiere ingresar?: "))
+    while True:
+        try:
+            n = int(input("¿Cuántos DNIs quiere ingresar?: "))
+            if n <= 0:
+                print("Ingrese un número mayor a 0.")
+                continue
+            break
+        except ValueError:
+            print("Error: debe ingresar un número válido.")
+
     i = 0
     while i < n:
-        dni = input("Ingrese DNI " + str(i+1) + ": ")
-        dnis.append(dni)
-        i += 1
+        dni = input("Ingrese DNI " + str(i+1) + ": ").strip()
+        if dni.isdigit():
+            dnis.append(dni)
+            i += 1
+        else:
+            print("Error: el DNI debe contener solo números.")
     return dnis
 
 def digitos_unicos(dni):                       # Recorre cada dígito y guarda solo los que no se repiten en una nueva lista "unicos".
@@ -103,7 +115,6 @@ def contar_frecuencias(dni):                # Cuenta cuántas veces aparece cada
         i += 1
 
 def suma_digitos(dni):                     # Convierte cada dígito en número entero y suma todos los dígitos.
-
     suma = 0
     i = 0
     while i < len(dni):
@@ -166,12 +177,27 @@ while i < len(digitos):
 
 def ingresar_anios():       # Pide cuántos integrantes hay, se ingresan sus años de nacimiento y se guardan en una lista.
     anios = []
-    n = int(input("¿Cuántos integrantes?: "))
+    while True:
+        try:
+            n = int(input("¿Cuántos integrantes?: "))
+            if n <= 0:
+                print("Ingrese un número mayor a 0.")
+                continue
+            break
+        except ValueError:
+            print("Error: debe ingresar un número válido.")
+
     i = 0
     while i < n:
-        anio = int(input("Ingrese año de nacimiento del integrante " + str(i+1) + ": "))
-        anios.append(anio)
-        i += 1
+        try:
+            anio = int(input("Ingrese año de nacimiento del integrante " + str(i+1) + ": "))
+            if anio < 1900 or anio > 2025:
+                print("Ingrese un año realista (entre 1900 y 2025).")
+                continue
+            anios.append(anio)
+            i += 1
+        except ValueError:
+            print("Error: debe ingresar un número válido.")
     return anios
 
 def es_bisiesto(anio):               # Devuelve True si el año es bisiesto.
@@ -227,10 +253,18 @@ if todos_despues_2000(anios):              # Si todos son mayores a 2000 → imp
     print("Grupo Z")
 if hay_bisiesto(anios):                    # Si alguno es bisiesto → imprime "Tenemos un año especial".
     print("Tenemos un año especial")            
+
 edades = []
 i = 0
 while i < len(anios):        # Pide las edades actuales de los integrantes e Imprime el producto cartesiano de años × edades.
-    edad = int(input("Ingrese la edad actual del integrante " + str(i+1) + ": "))
-    edades.append(edad)
-    i += 1
-producto_cartesiano(anios, edades) 
+    try:
+        edad = int(input("Ingrese la edad actual del integrante " + str(i+1) + ": "))
+        if edad < 0 or edad > 120:
+            print("Ingrese una edad realista (0 a 120).")
+            continue
+        edades.append(edad)
+        i += 1
+    except ValueError:
+        print("Error: debe ingresar un número válido.")
+
+producto_cartesiano(anios, edades)  
