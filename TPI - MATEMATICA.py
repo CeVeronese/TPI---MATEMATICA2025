@@ -229,7 +229,7 @@ if hay_bisiesto(anios):                    # Si alguno es bisiesto → imprime "
     print("Tenemos un año especial")            
 edades = []
 i = 0
-while i < len(anios):        # Luego pide las edades actuales de los integrantes e Imprime el producto cartesiano de años × edades.
+while i < len(anios):        # Pide las edades actuales de los integrantes e Imprime el producto cartesiano de años × edades.
     edad = int(input("Ingrese la edad actual del integrante " + str(i+1) + ": "))
     edades.append(edad)
     i += 1
