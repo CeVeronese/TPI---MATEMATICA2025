@@ -1,4 +1,4 @@
-def ingresar_dnis():
+def ingresar_dnis():                           # Pide al usuario cuántos DNIs quiere ingresar.
     dnis = []
     n = int(input("¿Cuántos DNIs quiere ingresar?: "))
     i = 0
@@ -8,7 +8,7 @@ def ingresar_dnis():
         i += 1
     return dnis
 
-def digitos_unicos(dni):
+def digitos_unicos(dni):                       # Recorre cada dígito y guarda solo los que no se repiten en una nueva lista "unicos".
     unicos = []
     i = 0
     while i < len(dni):
@@ -24,7 +24,9 @@ def digitos_unicos(dni):
         i += 1
     return unicos
 
-def union(d1, d2):
+ # Operaciones de conjuntos
+
+def union(d1, d2):                             # Devuelve todos los elementos de ambos, sin repetir.                       
     resultado = []
     i = 0
     while i < len(d1):
@@ -40,7 +42,7 @@ def union(d1, d2):
 
     return resultado
 
-def interseccion(d1, d2):
+def interseccion(d1, d2):                    # Devuelve los elementos que aparecen en los dos.
     resultado = []
     i = 0
     while i < len(d1):
@@ -53,7 +55,7 @@ def interseccion(d1, d2):
         i += 1
     return resultado
 
-def diferencia(d1, d2):
+def diferencia(d1, d2):                      # Devuelve los que están en d1 pero no en d2.
     resultado = []
     i = 0
     while i < len(d1):
@@ -69,7 +71,7 @@ def diferencia(d1, d2):
         i += 1
     return resultado
 
-def diferencia_simetrica(d1, d2):
+def diferencia_simetrica(d1, d2):           # Devuelve los que están en uno u otro, pero no en ambos.
     dif1 = diferencia(d1, d2)
     dif2 = diferencia(d2, d1)
 
@@ -84,7 +86,7 @@ def diferencia_simetrica(d1, d2):
         j += 1
     return resultado
 
-def contar_frecuencias(dni):
+def contar_frecuencias(dni):                # Cuenta cuántas veces aparece cada número en el DNI.
     print("\nDNI:", dni)
     digitos = "0123456789"
     i = 0
@@ -100,7 +102,8 @@ def contar_frecuencias(dni):
             print("Dígito", d, ":", contador, "vez/veces")
         i += 1
 
-def suma_digitos(dni):
+def suma_digitos(dni):                     # Convierte cada dígito en número entero y suma todos los dígitos.
+
     suma = 0
     i = 0
     while i < len(dni):
@@ -108,19 +111,21 @@ def suma_digitos(dni):
         i += 1
     return suma
 
-dnis = ingresar_dnis()
+# Se ingresan los DNIs.
+
+dnis = ingresar_dnis()                   # Se calculan sus dígitos únicos.
 lista_unicos = []
 i = 0
 while i < len(dnis):
     unicos = digitos_unicos(dnis[i])
-    lista_unicos.append(unicos)
+    lista_unicos.append(unicos)                       
 
     if len(unicos) > 6:
-        print("DNI", i+1, "-> Diversidad numérica alta")
+        print("DNI", i+1, "-> Diversidad numérica alta")  # Si tiene más de 6 dígitos diferentes, muestra "Diversidad numérica alta".
 
     i += 1
 
-print("\n--- Operaciones entre pares ---")
+print("\n--- Operaciones entre pares ---")   # Operaciones (unión, intersección, diferencia, etc.) entre cada par de DNIs.
 i = 0
 while i < len(lista_unicos):
     j = i + 1
@@ -135,14 +140,14 @@ while i < len(lista_unicos):
         j += 1
     i += 1
 
-print("\n--- Frecuencias y Sumas ---")
+print("\n--- Frecuencias y Sumas ---")   # Muestra las frecuencias de cada dígito y la suma de dígitos para cada DNI.
 i = 0
 while i < len(dnis):
     contar_frecuencias(dnis[i])
     print("Suma de dígitos:", suma_digitos(dnis[i]))
     i += 1
 
-print("\n--- Condiciones Globales ---")
+print("\n--- Condiciones Globales ---")   # Busca si algún dígito aparece en todos los DNIs y lo muestra.
 digitos = "0123456789"
 i = 0
 while i < len(digitos):
@@ -157,8 +162,9 @@ while i < len(digitos):
         print("Dígito compartido:", d)
     i += 1
 
-#AÑOS
-def ingresar_anios():
+# Trabajo con años y edades
+
+def ingresar_anios():       # Pide cuántos integrantes hay, se ingresan sus años de nacimiento y se guardan en una lista.
     anios = []
     n = int(input("¿Cuántos integrantes?: "))
     i = 0
@@ -168,13 +174,13 @@ def ingresar_anios():
         i += 1
     return anios
 
-def es_bisiesto(anio):
+def es_bisiesto(anio):               # Devuelve True si el año es bisiesto.
     if (anio % 4 == 0 and anio % 100 != 0) or (anio % 400 == 0):
         return True
     else:
         return False
 
-def contar_pares_impares(anios):
+def contar_pares_impares(anios):            # Cuenta cuántos años son pares y cuántos son impares.
     pares = 0
     impares = 0
     i = 0
@@ -186,7 +192,7 @@ def contar_pares_impares(anios):
         i += 1
     return pares, impares
 
-def todos_despues_2000(anios):
+def todos_despues_2000(anios):           # Devuelve True si todos los integrantes nacieron después del 2000.
     i = 0
     while i < len(anios):
         if anios[i] <= 2000:
@@ -194,7 +200,7 @@ def todos_despues_2000(anios):
         i += 1
     return True
 
-def hay_bisiesto(anios):
+def hay_bisiesto(anios):                #  Devuelve True si al menos un integrante nació en un año bisiesto.
     i = 0
     while i < len(anios):
         if es_bisiesto(anios[i]):
@@ -202,7 +208,7 @@ def hay_bisiesto(anios):
         i += 1
     return False
 
-def producto_cartesiano(anios, edades):
+def producto_cartesiano(anios, edades):      # Muestra todas las combinaciones posibles de pares (año, edad) de los integrantes.
     print("\n--- Producto cartesiano años x edades ---")
     i = 0
     while i < len(anios):
@@ -212,18 +218,18 @@ def producto_cartesiano(anios, edades):
             j += 1
         i += 1
 
-anios = ingresar_anios()
+anios = ingresar_anios()                   # Se ingresan los años de nacimiento y se cuentan cuántos son pares e impares.
 pares, impares = contar_pares_impares(anios)
 print("\nCantidad de años pares:", pares)
 print("Cantidad de años impares:", impares)
 
-if todos_despues_2000(anios):
+if todos_despues_2000(anios):              # Si todos son mayores a 2000 → imprime "Grupo Z".
     print("Grupo Z")
-if hay_bisiesto(anios):
-    print("Tenemos un año especial")
+if hay_bisiesto(anios):                    # Si alguno es bisiesto → imprime "Tenemos un año especial".
+    print("Tenemos un año especial")            
 edades = []
 i = 0
-while i < len(anios):
+while i < len(anios):        # Luego pide las edades actuales de los integrantes e Imprime el producto cartesiano de años × edades.
     edad = int(input("Ingrese la edad actual del integrante " + str(i+1) + ": "))
     edades.append(edad)
     i += 1
