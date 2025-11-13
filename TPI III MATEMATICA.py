@@ -43,3 +43,56 @@ def juego_adivinanza():
         print("Valor no valido")
 juego_adivinanza()
 
+print("=== SIMULADOR DE PUERTAS LÓGICAS ===")
+print("1 - AND")
+print("2 - OR")
+print("3 - NOT")
+print("4 - NAND")
+print("5 - NOR")
+print("6 - XOR")
+
+op = int(input("Seleccione una opción: "))
+
+if op == 3:
+    A = int(input("Ingrese el valor A (0 o 1): "))
+else:
+    A = int(input("Ingrese el valor A (0 o 1): "))
+    B = int(input("Ingrese el valor B (0 o 1): "))
+
+if A not in (0, 1) or (op != 3 and B not in (0, 1)):
+    print("Error: solo se aceptan valores 0 o 1.")
+    exit()
+
+if op == 1:
+    Z = A & B                        # AND
+    nombre = "AND"
+
+elif op == 2:
+    Z = A | B                        # OR
+    nombre = "OR"
+
+elif op == 3:
+    Z = 1 - A                        # NOT
+    nombre = "NOT"
+
+elif op == 4:
+    Z = 1 - (A & B)                  # NAND
+    nombre = "NAND"
+
+elif op == 5:
+    Z = 1 - (A | B)                  # NOR
+    nombre = "NOR"
+
+elif op == 6:
+    Z = int(A != B)                  # XOR
+    nombre = "XOR"
+
+else:
+    print("Opción inválida.")
+    exit()
+
+print("\n--- RESULTADO ---")
+if op == 3:
+    print(f"{nombre} {A}  →  {Z}")
+else:
+    print(f"{A}  {nombre}  {B}  →  {Z}")
