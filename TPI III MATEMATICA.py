@@ -96,3 +96,98 @@ if op == 3:
     print(f"{nombre} {A}  →  {Z}")
 else:
     print(f"{A}  {nombre}  {B}  →  {Z}")
+
+def imprimir_matriz(matriz):
+    for fila in matriz:
+        for elem in fila:
+            print(str(elem).center(6), end="")
+        print()
+
+
+def generar_combinaciones(n):
+    total = 2 ** n
+    combinaciones = []
+
+    for i in range(total):
+        fila = []
+        for bit in range(n):
+            valor = (i >> bit) & 1
+            fila.append(valor)
+        combinaciones.append(fila)
+
+    return combinaciones
+
+
+# AND de varias entradas
+def operacion_and(fila):
+    resultado = 1
+    for v in fila:
+        resultado = resultado and v
+    return resultado
+
+
+# OR de varias entradas
+def operacion_or(fila):
+    resultado = 0
+    for v in fila:
+        resultado = resultado or v
+    return resultado
+
+
+# NOT aplicado al conjunto completo
+def operacion_not(fila):
+    return 1 if operacion_or(fila) == 0 else 0
+
+
+print("===== MENÚ DE OPERACIONES BOOLEANAS =====")
+print("1 - AND")
+print("2 - OR")
+print("3 - NOT")
+opcion = int(input("Elija una opción: "))
+
+# Validación
+if opcion not in (1, 2, 3):
+    print("Opción inválida.")
+    exit()
+
+
+n = int(input("Ingrese la cantidad de variables: "))
+variables = [chr(65 + i) for i in range(n)]   # A, B, C...
+comb = generar_combinaciones(n)
+
+print("\nVariables detectadas:", variables)
+
+
+if opcion == 1:
+    expresion = " AND ".join(variables)
+elif opcion == 2:
+    expresion = " OR ".join(variables)
+else:
+    expresion = "NOT (" + " OR ".join(variables) + ")"
+
+print("\nExpresión booleana seleccionada:")
+print("   Z =", expresion)
+print()
+
+
+encabezado = variables + ["Z"]
+print(*[v.center(6) for v in encabezado])
+
+matriz = []
+
+for fila in comb:
+
+    if opcion == 1:        # AND
+        z = operacion_and(fila)
+
+    elif opcion == 2:      # OR
+        z = operacion_or(fila)
+
+    else:                  # NOT aplicado al conjunto completo
+        z = operacion_not(fila)
+
+    matriz.append(fila + [z])
+
+imprimir_matriz(matriz)
+
+print("\nFin del programa.")
