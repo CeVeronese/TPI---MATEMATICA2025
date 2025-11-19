@@ -97,6 +97,7 @@ if op == 3:
 else:
     print(f"{A}  {nombre}  {B}  →  {Z}")
 
+
 def imprimir_matriz(matriz):
     for fila in matriz:
         for elem in fila:
@@ -171,7 +172,8 @@ print()
 
 
 encabezado = variables + ["Z"]
-print(*[v.center(6) for v in encabezado])
+print("".join(v.center(6) for v in encabezado))
+
 
 matriz = []
 
