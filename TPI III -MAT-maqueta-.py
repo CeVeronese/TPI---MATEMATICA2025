@@ -133,20 +133,20 @@ def jugar_adivinanza(numero_decimal, es_binario_a_decimal=False):
 def juego_decimal_a_binario():
     """Mostrar un número decimal y pedir adivinar su binario."""
     numero_decimal = random.randint(1, 100)
-    jugar_adivinanza(numero_decimal, es_binario_a_decimal=False)
+    jugar_adivinanza(numero_decimal, es_binario_a_decimal=False)    # False → se muestra DECIMAL y el usuario debe escribir el BINARIO
 
 
 def juego_binario_a_decimal():
     """Mostrar un número en binario y pedir adivinar su decimal."""
     numero_decimal = random.randint(1, 100)
-    jugar_adivinanza(numero_decimal, es_binario_a_decimal=True)
+    jugar_adivinanza(numero_decimal, es_binario_a_decimal=True)      # True → se muestra BINARIO y el usuario debe escribir el DECIMAL
 
 
 def menu_juego_binario():
     """Menú para elegir el tipo de juego."""
     salir_juego = False
     
-    while not salir_juego:
+    while not salir_juego:  # Bucle del menú del juego; se repite hasta que el usuario elija salir
         print(
             "\n--- MENÚ JUEGO BINARIO ---\n"
             "1️⃣ - Decimal → Binario\n"
