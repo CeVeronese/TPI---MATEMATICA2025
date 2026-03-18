@@ -38,8 +38,20 @@ def digitos_unicos(dni):                       # Recorre cada dígito y guarda s
 
  # Operaciones de conjuntos
 
-def union(d1, d2):                             # Devuelve todos los elementos de ambos, sin repetir.                       
-    resultado = []
+
+"""""
+En esta parte del código lo que hicimos fue crear funciones que trabajan con los dígitos de los DNIs como si fueran 
+conjuntos matemáticos.
+
+La idea es poder analizarlos y compararlos: 
+
+ver qué números tienen en común, cuáles no, y también hacer operaciones como unión, intersección o diferencia.
+Además agregamos funciones que cuentan cuántas veces aparece cada dígito y otra que suma todos los dígitos del DNI, 
+para obtener más información de cada número.
+"""""
+
+def union(d1, d2):                   # Esta función recibe dos listas y devuelve todos los elementos de ambas, sin repetirlos.                  
+    resultado = []                   # Por ejemplo, si un DNI tiene los dígitos [1,2,3] y otro [3,4,5], la unión sería [1,2,3,4,5].
     i = 0
     while i < len(d1):
         if d1[i] not in resultado:
